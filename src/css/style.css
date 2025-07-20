@@ -408,6 +408,30 @@ section p {
     background-color: white;
 }
 
+/* About Us image styling */
+.about-us-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-us-image:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .about-us-image {
+        max-width: 300px;
+        margin: 1.5rem auto;
+    }
+}
+
 footer {
     background-color: var(--primary-color);
     color: var(--primary-text-color);
