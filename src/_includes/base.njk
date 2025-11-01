@@ -118,12 +118,6 @@
                 }
             });
             
-            // Set carousel height based on a reasonable aspect ratio
-            const targetAspectRatio = maxAspectRatio > 0 ? Math.min(maxAspectRatio, 2) : 1.5;
-            const carouselWidth = carousel.offsetWidth || 600; // fallback width
-            const optimalHeight = Math.min(Math.max(carouselWidth / targetAspectRatio, 200), 500);
-            carousel.style.height = optimalHeight + 'px';
-            
             // Create navigation arrows
             const prevButton = document.createElement('button');
             prevButton.className = 'carousel-arrow carousel-prev';
