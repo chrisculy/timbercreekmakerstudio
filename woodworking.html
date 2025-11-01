@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Woodworking - Timbercreek Maker Studio</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./" class="logo">
+                <img src="./images/tcms_logo_off_white.png" alt="Timbercreek Maker Studio Logo">
+            </a>
+            
+            <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="./">Home</a></li>
+                <li><a href="./woodworking.html">Fine Woodworking</a></li>
+                <li><a href="./fiber.html">Fiber Crafts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero">
+    <h1>Fine Woodworking</h1>
+    <p>Custom Hardwood Furniture & Creative Woodworking</p>
+</div>
+
+<section>
+    <h2>Our Woodworking Services</h2>
+    <p>At Timbercreek Maker Studio, we specialize in creating custom hardwood furniture and unique woodworking pieces that combine traditional craftsmanship with contemporary design. Each piece is carefully handcrafted to meet your specific needs and preferences.</p>
+</section>
+
+<section class="gallery">
+    <div class="gallery-item">
+        <img src="./images/woodworking/whiteboard_1.jpg" alt="Mobile Whiteboard">
+        <img src="./images/woodworking/whiteboard_2.jpg" alt="Mobile Whiteboard">
+        <img src="./images/woodworking/whiteboard_3.jpg" alt="Mobile Whiteboard">
+        <img src="./images/woodworking/whiteboard_4.jpg" alt="Mobile Whiteboard">
+        <img src="./images/woodworking/whiteboard_5.jpg" alt="Mobile Whiteboard">
+        <h3>Mobile Whiteboard</h3>
+        <p>Double sided 4'x8' whiteboard.<br>Crafted from elm wood with the Hebrew word "hesed" hand carved in the frame.</p>
+    </div>
+    <div class="gallery-item">
+        <img src="./images/woodworking/hall_table_1.jpg" alt="Corner Hall Table">
+        <img src="./images/woodworking/hall_table_2.jpg" alt="Corner Hall Table">
+        <img src="./images/woodworking/hall_table_3.jpg" alt="Corner Hall Table">
+        <img src="./images/woodworking/hall_table_4.jpg" alt="Corner Hall Table">
+        <img src="./images/woodworking/hall_table_5.jpg" alt="Corner Hall Table">
+        <img src="./images/woodworking/hall_table_6.jpg" alt="Corner Hall Table">
+        <img src="./images/woodworking/hall_table_7.jpg" alt="Corner Hall Table">
+        <h3>Corner Hall Table</h3>
+        <p>A small corner hall table made from repurposed oak.</p>
+    </div>
+    <div class="gallery-item">
+        <img src="./images/woodworking/bathroom_1.jpg" alt="Walnut Vanity and Bench">
+        <img src="./images/woodworking/bathroom_2.jpg" alt="Walnut Vanity and Bench">
+        <img src="./images/woodworking/bathroom_3.jpg" alt="Walnut Vanity and Bench">
+        <h3>Walnut Vanity and Bench</h3>
+        <p>A double sink vanity and custom bench made to fit the space, both made from walnut.</p>
+    </div>
+    <div class="gallery-item">
+        <img src="./images/woodworking/gaming_coffee_table_1.jpg" alt="Board Gaming Coffee Table">
+        <img src="./images/woodworking/gaming_coffee_table_2.jpg" alt="Board Gaming Coffee Table">
+        <img src="./images/woodworking/gaming_coffee_table_3.jpg" alt="Board Gaming Coffee Table">
+        <h3>Board Gaming Coffee Table</h3>
+        <p>A coffee table designed for board gaming, with an inset gaming well and top leaves that double as playing area extensions. Made from repurposed oak.</p>
+    </div>
+</section>
+
+<section class="contact">
+    <h2>Commission a Piece</h2>
+    <p>Interested in commissioning a custom piece of furniture? Contact us to discuss your project and get a quote.</p>
+    <p><a href="mailto:info@timbercreekmakerstudio.com">info@timbercreekmakerstudio.com</a></p>
+</section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Timbercreek Maker Studio | <a href="mailto:info@timbercreekmakerstudio.com">info@timbercreekmakerstudio.com</a> | 505-688-5779</p>
+    </footer>
+
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close menu when clicking on a link
+                navMenu.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A') {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Initialize carousels
+            initCarousels();
+        });
+
+        // Carousel functionality
+        function showSlide(carousel, index) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function navigate(carousel, direction) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            let activeIndex = Array.from(slides).findIndex(slide => 
+                slide.classList.contains('active')
+            );
+            
+            let newIndex;
+            if (direction === 'next') {
+                newIndex = (activeIndex + 1) % slides.length;
+            } else {
+                newIndex = (activeIndex - 1 + slides.length) % slides.length;
+            }
+            
+            showSlide(carousel, newIndex);
+        }
+        
+        function createCarousel(images) {
+            const carousel = document.createElement('div');
+            carousel.className = 'carousel';
+            
+            const carouselInner = document.createElement('div');
+            carouselInner.className = 'carousel-inner';
+            
+            // Calculate optimal height based on images
+            let maxAspectRatio = 0;
+            let minAspectRatio = Infinity;
+            
+            // Create slides and calculate aspect ratios
+            const slides = [];
+            images.forEach((img, index) => {
+                const slide = document.createElement('div');
+                slide.className = `carousel-slide${index === 0 ? ' active' : ''}`;
+                const newImg = img.cloneNode(true);
+                newImg.style.display = 'block';
+                slide.appendChild(newImg);
+                carouselInner.appendChild(slide);
+                slides.push(slide);
+                
+                // Calculate aspect ratio if image is loaded
+                if (img.naturalWidth && img.naturalHeight) {
+                    const aspectRatio = img.naturalWidth / img.naturalHeight;
+                    maxAspectRatio = Math.max(maxAspectRatio, aspectRatio);
+                    minAspectRatio = Math.min(minAspectRatio, aspectRatio);
+                }
+            });
+            
+            // Create navigation arrows
+            const prevButton = document.createElement('button');
+            prevButton.className = 'carousel-arrow carousel-prev';
+            prevButton.innerHTML = '&#10094;';
+            prevButton.setAttribute('aria-label', 'Previous image');
+            
+            const nextButton = document.createElement('button');
+            nextButton.className = 'carousel-arrow carousel-next';
+            nextButton.innerHTML = '&#10095;';
+            nextButton.setAttribute('aria-label', 'Next image');
+            
+            // Create dots
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'carousel-dots';
+            
+            for (let i = 0; i < images.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot${i === 0 ? ' active' : ''}`;
+                dot.setAttribute('role', 'button');
+                dot.setAttribute('aria-label', `Go to image ${i + 1}`);
+                dot.addEventListener('click', () => showSlide(carousel, i));
+                dotsContainer.appendChild(dot);
+            }
+            
+            // Append all elements
+            carousel.appendChild(carouselInner);
+            carousel.appendChild(prevButton);
+            carousel.appendChild(nextButton);
+            carousel.appendChild(dotsContainer);
+            
+            // Add navigation event listeners
+            let autoplayInterval;
+            
+            function startAutoplay() {
+                stopAutoplay();
+                autoplayInterval = setInterval(() => navigate(carousel, 'next'), 5000);
+            }
+            
+            function stopAutoplay() {
+                if (autoplayInterval) {
+                    clearInterval(autoplayInterval);
+                }
+            }
+            
+            prevButton.addEventListener('click', () => {
+                stopAutoplay();
+                navigate(carousel, 'prev');
+                startAutoplay();
+            });
+            
+            nextButton.addEventListener('click', () => {
+                stopAutoplay();
+                navigate(carousel, 'next');
+                startAutoplay();
+            });
+            
+            carousel.addEventListener('mouseenter', stopAutoplay);
+            carousel.addEventListener('mouseleave', startAutoplay);
+            
+            // Start autoplay
+            startAutoplay();
+            
+            return carousel;
+        }
+
+        function initCarousels() {
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                const images = Array.from(item.querySelectorAll('img'));
+                if (images.length <= 1) {
+                    if (images.length === 1) {
+                        images[0].style.display = 'block';
+                    }
+                    return;
+                }
+
+                const carousel = createCarousel(images);
+                images[0].parentNode.insertBefore(carousel, images[0]);
+                images.forEach(img => img.remove());
+            });
+        }
+    </script>
+</body>
+</html>
