@@ -30,7 +30,9 @@ jobs:
       run: npm ci
       
     - name: Build site
-      run: npm run build
+      run: |
+        npm run build
+        cp CNAME ./_site/CNAME
       
     - name: Deploy to site branch
       uses: peaceiris/actions-gh-pages@v4
